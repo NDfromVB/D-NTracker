@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    food and drink
+{% endblock %}
+
+{% block main %}
+<div style="display:flex">
+    <a href="/find"><button>Find & Update</button></a>
+    <a href="/addfood"><button>Add a new food</button></a>
+    <a href="/addfridge"><button>Add a new fridge</button></a>
+    <a href="/rename"><button>Rename a fridge</button></a>
+</div>
+<p></p>
+<strong>ALMOST EXPIRED FOOD & DRINK</strong>
+<p></p>
+<table style="width:100%; border-collapse: collapse;">
+    <thead>
+        <tr style="border-bottom: 1px solid #dddddd">
+            <td>Fridge</td>
+            <td>Food/Drink</td>
+            <td>Amount</td>
+            <td>Input date</td>
+            <td>Expiry date</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in list %}
+            <tr style="border-bottom: 1px solid #dddddd">
+                <td>{{row.fridge_name}}</td>
+                <td>{{row.food_name}}</td>
+                <td>{{row.amount}}</td>
+                <td>{{row.input_date}}</td>
+                <td>{{row.expiry}}</td>
+                <td>{{row.description}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

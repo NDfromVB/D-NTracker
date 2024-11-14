@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add food
+{% endblock %}
+
+{% block additional_script %}
+<script src="/static/foodndrink.js"></script>
+{% endblock %}
+
+{% block main %}
+<div style="display:flex">
+    <a href="/find"><button>Find & Update</button></a>
+    <a href="/addfood"><button>Add a new food</button></a>
+    <a href="/addfridge"><button>Add a new fridge</button></a>
+    <a href="/rename"><button>Rename a fridge</button></a>
+</div>
+<p></p>
+<form action="/addfood" method="post">
+    <div class="input-group">
+        <span class="input-group-text" style="width:10vw">Fridge name:</span>
+        <select class="form-select" autofocus aria-label="Default select example" name="fridge_name" required>
+            {% for element in list %}
+                <option>{{element.fridge_name}}</option>
+            {% endfor %}
+        </select>
+        <span class="input-group-text" style="width:10vw">Food name:</span>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="foodname" placeholder="food name" type="text" required>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-text" style="width:10vw">Amount:</span>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="amount" placeholder="Amount" type="text" required>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-text" style="width:10vw">Input date:</span>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="iyear"  id="iyear"  placeholder="YYYY"   pattern="\d{4}"  type="text"   required>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="imonth" id="imonth" placeholder="Month"  min="1" max="12" type="number" required>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="iday"   id="iday"   placeholder="Day"    min="1"          type="number" required>
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Fast</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button type="button" class="dropdown-item" onclick="geti0DateInformation()">Today</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="geti1DateInformation()">Yesterday</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="geti7DateInformation()">Last week</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="geti30DateInformation()">Last month</button></li>
+            </ul>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-text" style="width:10vw">Expired date:</span>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="eyear"  id="eyear"  placeholder="YYYY"   pattern="\d{4}"  type="text"   required>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="emonth" id="emonth" placeholder="Month"  min="1" max="12" type="number" required>
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="eday"   id="eday"   placeholder="Day"    min="1"          type="number" required>
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Fast</button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><button type="button" class="dropdown-item" onclick="gete1DateInformation()">Tomorrow</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="gete7DateInformation()">A week later</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="gete30DateInformation()">A month later</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" class="dropdown-item" onclick="gete365DateInformation()">A year later</button></li>
+            </ul>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description"></textarea>
+        <label for="floatingTextarea">Description (optional)</label>
+    </div>
+    <p></p>
+    <button class="btn btn-primary" type="submit">Add food</button>
+</form>
+{% endblock %}

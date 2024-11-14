@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add food
+{% endblock %}
+
+{% block main %}
+<div style="display:flex">
+    <a href="/find"><button>Find & Update</button></a>
+    <a href="/addfood"><button>Add a new food</button></a>
+    <a href="/addfridge"><button>Add a new fridge</button></a>
+    <a href="/rename"><button>Rename a fridge</button></a>
+</div>
+<p></p>
+<form action="/rename" method="post">
+    <div class="input-group">
+        <span class="input-group-text" style="width:10vw">Fridge name:</span>
+        <select class="form-select" autofocus aria-label="Default select example" name="old_fridge_name">
+            {% for element in list %}
+                <option>{{element.fridge_name}}</option>
+            {% endfor %}
+        </select>
+        <span class="input-group-text">New fridge name:</span>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="new_fridge_name" placeholder="New name" type="text" required>
+    </div>
+    <p></p>
+    <button class="btn btn-primary" type="submit">Rename</button>
+</form>
+{% endblock %}
